@@ -5,13 +5,12 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
@@ -26,22 +25,47 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ComposeLayoutsTheme {
-                PhotographerCard()
-            }
+            PhotographerCard()
         }
     }
 }
 
 @Composable
-fun PhotographerCard(modifier: Modifier = Modifier) {
-    // The order in which modifiers appended will make the UI behave differently
-    Row(modifier = modifier
-        .padding(8.dp)
-        .clip(RoundedCornerShape(4.dp))
-        .background(MaterialTheme.colors.surface)
-        .clickable(onClick = {})
-        .padding(16.dp)) {
+fun PhotographerCard() {
+    Scaffold(
+        // topBar is slot in Scaffold
+        topBar = {
+            TopAppBar(
+                // these are slots in TopAppBar
+                title = {
+                    Text(text = "Compose Layouts")
+                },
+                actions = {
+                    IconButton(onClick = {
+                        // click handling goes here
+                    }) {
+                        Icon(Icons.Filled.Favorite, contentDescription = null)
+                    }
+                }
+            )
+        }
+    ) { innerPadding ->
+        BodyContent(Modifier.padding(innerPadding))
+    }
+}
+
+@Composable
+fun BodyContent(modifier: Modifier = Modifier) {
+    Row(
+        modifier = modifier
+            // The order in which modifiers appended will make the UI behave differently
+            .padding(6.dp)
+            .clip(RoundedCornerShape(4.dp))
+            .background(MaterialTheme.colors.surface)
+            .clickable(onClick = {})
+            .padding(16.dp)
+            .fillMaxWidth()
+    ) {
         Surface(
             modifier = Modifier.size(50.dp),
             shape = CircleShape,
@@ -52,7 +76,8 @@ fun PhotographerCard(modifier: Modifier = Modifier) {
         Column(
             modifier = Modifier
 
-                .align(Alignment.CenterVertically).padding(start = 8.dp)
+                .align(Alignment.CenterVertically)
+                .padding(start = 8.dp)
         ) {
             Text("Alfred Sisley", fontWeight = FontWeight.Bold)
             CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
