@@ -3,20 +3,18 @@ package com.example.composelayouts
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,7 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.composelayouts.ui.theme.ComposeLayoutsTheme
-import dev.chrisbanes.accompanist.coil.CoilImage
+import com.google.accompanist.coil.rememberCoilPainter
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -96,6 +94,7 @@ fun PhotographerCard() {
 @Composable
 fun BodyContent(modifier: Modifier = Modifier, index: Int) {
     Row(
+        verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             // The order in which modifiers appended will make the UI behave differently
             .padding(6.dp)
@@ -111,19 +110,14 @@ fun BodyContent(modifier: Modifier = Modifier, index: Int) {
             color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
         ) {
             // Image goes here
-            CoilImage(
-                data = "https://developer.android.com/images/brand/Android_Robot.png",
+            Image(
+                painter = rememberCoilPainter(request = "https://developer.android.com/images/brand/Android_Robot.png"),
                 contentDescription = "Android Logo",
                 modifier = Modifier.size(50.dp)
             )
         }
-        Column(
-            modifier = Modifier
-                .align(Alignment.CenterVertically)
-                .padding(start = 8.dp)
-        ) {
-            Text("Item #$index", fontWeight = FontWeight.Bold)
-        }
+        Spacer(Modifier.width(10.dp))
+        Text("Item #$index", fontWeight = FontWeight.Bold)
     }
 }
 
