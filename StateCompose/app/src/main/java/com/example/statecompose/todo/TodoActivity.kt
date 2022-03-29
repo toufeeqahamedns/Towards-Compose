@@ -44,11 +44,13 @@ class TodoActivity : AppCompatActivity() {
 
 @Composable
 fun TodoActivityScreen(todoViewModel: TodoViewModel) {
-    val items: List<TodoItem> by todoViewModel.todoItems.observeAsState(listOf())
-
     TodoScreen(
-        items = items,
+        items = todoViewModel.todoItems,
+        currentlyEditing = todoViewModel.currentEditItem,
         onAddItem = todoViewModel::addItem,
-        onRemoveItem = todoViewModel::removeItem
+        onRemoveItem = todoViewModel::removeItem,
+        onStartEdit = todoViewModel::onEditItemSelected,
+        onEditItemChange = todoViewModel::onEditItemChange,
+        onEditDone = todoViewModel::onEditDone,
     )
 }
