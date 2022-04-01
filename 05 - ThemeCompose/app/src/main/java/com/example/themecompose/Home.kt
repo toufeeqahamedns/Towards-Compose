@@ -53,13 +53,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.themecompose.data.Post
 import com.example.themecompose.data.PostRepo
+import com.example.themecompose.theme.ThemeComposeTheme
 import java.util.Locale
 
 @Composable
 fun Home() {
     val featured = remember { PostRepo.getFeaturedPost() }
     val posts = remember { PostRepo.getPosts() }
-    MaterialTheme {
+    ThemeComposeTheme {
         Scaffold(
             topBar = { AppBar() }
         ) { innerPadding ->
@@ -207,8 +208,10 @@ fun PostItem(
 @Composable
 private fun PostItemPreview() {
     val post = remember { PostRepo.getFeaturedPost() }
-    Surface {
-        PostItem(post = post)
+    ThemeComposeTheme {
+        Surface {
+            PostItem(post = post)
+        }
     }
 }
 
@@ -216,7 +219,9 @@ private fun PostItemPreview() {
 @Composable
 private fun FeaturedPostPreview() {
     val post = remember { PostRepo.getFeaturedPost() }
-    FeaturedPost(post = post)
+    ThemeComposeTheme {
+        FeaturedPost(post = post)
+    }
 }
 
 @Preview("Home")
