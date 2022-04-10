@@ -33,7 +33,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.navigationcompose.data.UserData
+import com.example.navigationcompose.ui.accounts.AccountsBody
+import com.example.navigationcompose.ui.bills.BillsBody
 import com.example.navigationcompose.ui.components.RallyTabRow
+import com.example.navigationcompose.ui.overview.OverviewBody
 import com.example.navigationcompose.ui.theme.RallyTheme
 
 /**
@@ -73,13 +77,16 @@ fun RallyApp() {
                 modifier = Modifier.padding(innerPadding),
             ) {
                 composable(RallyScreen.Overview.name) {
-                    Text(text = RallyScreen.Overview.name)
+                    OverviewBody(
+                        onClickSeeAllAccounts = { navController.navigate(RallyScreen.Accounts.name) },
+                        onClickSeeAllBills = { navController.navigate(RallyScreen.Bills.name) },
+                    )
                 }
                 composable(RallyScreen.Accounts.name) {
-                    Text(RallyScreen.Accounts.name)
+                    AccountsBody(accounts = UserData.accounts)
                 }
                 composable(RallyScreen.Bills.name) {
-                    Text(RallyScreen.Bills.name)
+                    BillsBody(bills = UserData.bills)
                 }
             }
         }
