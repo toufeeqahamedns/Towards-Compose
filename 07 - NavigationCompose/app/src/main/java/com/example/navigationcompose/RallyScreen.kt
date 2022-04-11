@@ -20,12 +20,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AttachMoney
 import androidx.compose.material.icons.filled.MoneyOff
 import androidx.compose.material.icons.filled.PieChart
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.example.navigationcompose.data.UserData
-import com.example.navigationcompose.ui.accounts.AccountsBody
-import com.example.navigationcompose.ui.bills.BillsBody
-import com.example.navigationcompose.ui.overview.OverviewBody
 
 /**
  * Screen metadata for Rally.
