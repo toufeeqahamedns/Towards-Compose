@@ -22,9 +22,9 @@ import androidx.compose.material.icons.filled.MoneyOff
 import androidx.compose.material.icons.filled.PieChart
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.example.compose.rally.data.UserData
-import com.example.compose.rally.ui.accounts.AccountsBody
-import com.example.compose.rally.ui.bills.BillsBody
+import com.example.testingcompose.data.UserData
+import com.example.testingcompose.ui.accounts.AccountsBody
+import com.example.testingcompose.ui.bills.BillsBody
 import com.example.testingcompose.ui.overview.OverviewBody
 
 /**

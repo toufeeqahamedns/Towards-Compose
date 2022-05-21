@@ -28,7 +28,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import com.example.compose.rally.ui.components.RallyTopAppBar
+import com.example.testingcompose.ui.components.RallyTopAppBar
 import com.example.testingcompose.ui.theme.RallyTheme
 
 /**
