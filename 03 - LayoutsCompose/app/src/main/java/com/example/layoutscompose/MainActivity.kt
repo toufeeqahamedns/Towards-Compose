@@ -30,6 +30,7 @@ import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
@@ -242,10 +243,14 @@ private fun ComposeLayoutsBottomNavigation(modifier: Modifier = Modifier) {
     }
 }
 
-// Step: MySoothe App - Scaffold
+// Step: ComposeLayouts App - Scaffold
 @Composable
 fun ComposeLayoutsApp() {
-    // Implement composable here
+    ComposeLayoutsTheme {
+        Scaffold(bottomBar = { ComposeLayoutsBottomNavigation() }) { paddingValues ->
+            HomeScreen(Modifier.padding(paddingValues))
+        }
+    }
 }
 
 private val alignYourBodyData = listOf(
@@ -336,6 +341,6 @@ fun BottomNavigationPreview() {
 
 @Preview(widthDp = 360, heightDp = 640)
 @Composable
-fun MySoothePreview() {
+fun ComposeLayoutsPreview() {
     ComposeLayoutsApp()
 }

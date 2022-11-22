@@ -30,5 +30,5 @@ dependencyResolutionManagement {
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     }
 }
-rootProject.name = "MySoothe"
+rootProject.name = "ComposeLayouts"
 include ':app'
