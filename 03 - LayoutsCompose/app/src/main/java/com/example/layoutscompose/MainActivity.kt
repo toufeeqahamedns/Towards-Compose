@@ -1,130 +1,174 @@
 package com.example.layoutscompose
 
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.layoutscompose.ui.theme.ComposeLayoutsTheme
-import com.google.accompanist.coil.rememberCoilPainter
-import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            PhotographerCard()
-        }
+        setContent { ComposeLayoutsApp() }
     }
 }
 
+// Step: Search bar - Modifiers
 @Composable
-fun PhotographerCard() {
-
-    val listSize = 100
-    // We save the scrolling position with this state
-    val scrollState = rememberLazyListState()
-    // We save the coroutine scope where our animated scroll will be executed
-    val coroutineScope = rememberCoroutineScope()
-
-    Scaffold(
-        // topBar is slot in Scaffold
-        topBar = {
-            TopAppBar(
-                // these are slots in TopAppBar
-                title = {
-                    Text(text = "Compose Layouts")
-                },
-                actions = {
-                    IconButton(onClick = {
-                        // click handling goes here
-                    }) {
-                        Icon(Icons.Filled.Favorite, contentDescription = null)
-                    }
-                }
-            )
-        }
-    ) { innerPadding ->
-        Column {
-            Row {
-                Button(onClick = {
-                    coroutineScope.launch {
-                        // 0 is the first item index
-                        scrollState.animateScrollToItem(0)
-                    }
-                }) {
-                    Text("Scroll to the top")
-                }
-
-                Button(onClick = {
-                    coroutineScope.launch {
-                        // listSize - 1 is the last index of the list
-                        scrollState.animateScrollToItem(listSize - 1)
-                    }
-                }) {
-                    Text("Scroll to the end")
-                }
-            }
-            LazyColumn(state = scrollState) {
-                items(100) {
-                    BodyContent(Modifier.padding(innerPadding), it)
-                }
-            }
-        }
-    }
+fun SearchBar(
+    modifier: Modifier = Modifier
+) {
+    // Implement Composable here
 }
 
+// Step: Align your body - Alignment
 @Composable
-fun BodyContent(modifier: Modifier = Modifier, index: Int) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier
-            // The order in which modifiers appended will make the UI behave differently
-            .padding(6.dp)
-            .clip(RoundedCornerShape(4.dp))
-            .background(MaterialTheme.colors.surface)
-            .clickable(onClick = {})
-            .padding(16.dp)
-            .fillMaxWidth()
-    ) {
-        Surface(
-            modifier = Modifier.size(50.dp),
-            shape = CircleShape,
-            color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
-        ) {
-            // Image goes here
-            Image(
-                painter = rememberCoilPainter(request = "https://developer.android.com/images/brand/Android_Robot.png"),
-                contentDescription = "Android Logo",
-                modifier = Modifier.size(50.dp)
-            )
-        }
-        Spacer(Modifier.width(10.dp))
-        Text("Item #$index", fontWeight = FontWeight.Bold)
-    }
+fun AlignYourBodyElement(
+    modifier: Modifier = Modifier
+) {
+    // Implement composable here
 }
 
-@Preview
+// Step: Favorite collection card - Material Surface
 @Composable
-fun PhotographerCardPreview() {
+fun FavoriteCollectionCard(
+    modifier: Modifier = Modifier
+) {
+    // Implement composable here
+}
+
+// Step: Align your body row - Arrangements
+@Composable
+fun AlignYourBodyRow(
+    modifier: Modifier = Modifier
+) {
+    // Implement composable here
+}
+
+// Step: Favorite collections grid - LazyGrid
+@Composable
+fun FavoriteCollectionsGrid(
+    modifier: Modifier = Modifier
+) {
+    // Implement composable here
+}
+
+// Step: Home section - Slot APIs
+@Composable
+fun HomeSection(
+    modifier: Modifier = Modifier
+) {
+    // Implement composable here
+}
+
+// Step: Home screen - Scrolling
+@Composable
+fun HomeScreen(modifier: Modifier = Modifier) {
+    // Implement composable here
+}
+
+// Step: Bottom navigation - Material
+@Composable
+private fun ComposeLayoutsBottomNavigation(modifier: Modifier = Modifier) {
+    // Implement composable here
+}
+
+// Step: MySoothe App - Scaffold
+@Composable
+fun ComposeLayoutsApp() {
+    // Implement composable here
+}
+
+private val alignYourBodyData = listOf(
+    R.drawable.ab1_inversions to R.string.ab1_inversions,
+    R.drawable.ab2_quick_yoga to R.string.ab2_quick_yoga,
+    R.drawable.ab3_stretching to R.string.ab3_stretching,
+    R.drawable.ab4_tabata to R.string.ab4_tabata,
+    R.drawable.ab5_hiit to R.string.ab5_hiit,
+    R.drawable.ab6_pre_natal_yoga to R.string.ab6_pre_natal_yoga
+).map { DrawableStringPair(it.first, it.second) }
+
+private val favoriteCollectionsData = listOf(
+    R.drawable.fc1_short_mantras to R.string.fc1_short_mantras,
+    R.drawable.fc2_nature_meditations to R.string.fc2_nature_meditations,
+    R.drawable.fc3_stress_and_anxiety to R.string.fc3_stress_and_anxiety,
+    R.drawable.fc4_self_massage to R.string.fc4_self_massage,
+    R.drawable.fc5_overwhelmed to R.string.fc5_overwhelmed,
+    R.drawable.fc6_nightly_wind_down to R.string.fc6_nightly_wind_down
+).map { DrawableStringPair(it.first, it.second) }
+
+private data class DrawableStringPair(
+    @DrawableRes val drawable: Int,
+    @StringRes val text: Int
+)
+
+@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+@Composable
+fun SearchBarPreview() {
+    ComposeLayoutsTheme { SearchBar(Modifier.padding(8.dp)) }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+@Composable
+fun AlignYourBodyElementPreview() {
     ComposeLayoutsTheme {
-        PhotographerCard()
+        AlignYourBodyElement(
+            modifier = Modifier.padding(8.dp)
+        )
     }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+@Composable
+fun FavoriteCollectionCardPreview() {
+    ComposeLayoutsTheme {
+        FavoriteCollectionCard(
+            modifier = Modifier.padding(8.dp)
+        )
+    }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+@Composable
+fun FavoriteCollectionsGridPreview() {
+    ComposeLayoutsTheme { FavoriteCollectionsGrid() }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+@Composable
+fun AlignYourBodyRowPreview() {
+    ComposeLayoutsTheme { AlignYourBodyRow() }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+@Composable
+fun HomeSectionPreview() {
+    ComposeLayoutsTheme { HomeSection() }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+@Composable
+fun ScreenContentPreview() {
+    ComposeLayoutsTheme { HomeScreen() }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+@Composable
+fun BottomNavigationPreview() {
+    ComposeLayoutsTheme { ComposeLayoutsBottomNavigation(Modifier.padding(top = 24.dp)) }
+}
+
+@Preview(widthDp = 360, heightDp = 640)
+@Composable
+fun MySoothePreview() {
+    ComposeLayoutsApp()
 }
