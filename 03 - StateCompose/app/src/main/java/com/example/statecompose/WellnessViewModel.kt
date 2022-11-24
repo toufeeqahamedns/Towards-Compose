@@ -1,0 +1,22 @@
+package com.example.statecompose
+
+import androidx.compose.runtime.toMutableStateList
+import androidx.lifecycle.ViewModel
+
+class WellnessViewModel: ViewModel() {
+    private val _tasks = getWellnessTask().toMutableStateList()
+    val tasks: List<WellnessTask>
+        get() = _tasks
+
+    fun remove(task: WellnessTask) {
+        _tasks.remove(task)
+    }
+
+    fun changeTaskChecked(item: WellnessTask, checked: Boolean) {
+        tasks.find { it.id == item.id }?.let { task ->
+            task.checked = checked
+        }
+    }
+}
+
+private fun getWellnessTask() = List(30) { i -> WellnessTask(i, "Task # $i") }
