@@ -13,7 +13,7 @@
   the License.
   -->
 <resources>
-    <string name="app_name">Compose Theming</string>
+    <string name="app_name">Theme Compose</string>
     <string name="app_title">Jetnews</string>
     <string name="top">Top Story</string>
     <string name="popular">Popular</string>
